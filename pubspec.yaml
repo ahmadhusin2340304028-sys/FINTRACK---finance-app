@@ -1,0 +1,71 @@
+name: fintrack
+description: FinTrack - Aplikasi Pencatatan Uang Saku Mahasiswa
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State Management
+  flutter_riverpod: ^2.5.1
+
+  # Database
+  sqflite: ^2.3.3+1
+  path: ^1.9.0
+
+  # Storage
+  shared_preferences: ^2.3.2
+  flutter_secure_storage: ^9.2.2
+
+  # Charts
+  fl_chart: ^0.69.0
+
+  # Internationalization
+  intl: ^0.19.0
+
+  # PDF & File
+  pdf: ^3.11.1
+  path_provider: ^2.1.4
+  open_file: ^3.3.2
+
+  # Image
+  image_picker: ^1.1.2
+
+  # Notifications
+  flutter_local_notifications: ^18.0.1
+  timezone: ^0.9.4
+
+  # UI
+  google_fonts: ^6.2.1
+  percent_indicator: ^4.2.3
+  flutter_slidable: ^3.1.1
+  badges: ^3.1.2
+
+  # Utils
+  uuid: ^4.5.1
+  crypto: ^3.0.5
+  local_auth: ^2.3.0
+  url_launcher: ^6.3.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  flutter_launcher_icons: ^0.14.3
+
+flutter:
+  uses-material-design: true
+  # assets kosong dulu - tambah setelah folder ada
+  assets:
+    - assets/images/
+    - assets/icons/
+  # TIDAK mendaftarkan fonts - pakai google_fonts saja (online/cached)
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/logo/logo.png"

@@ -1,20 +1,29 @@
-<div align="center">
+# 💸 FinTrack — Aplikasi Keuangan Mahasiswa
 
-<img src="https://img.shields.io/badge/Flutter-3.x-02569B?style=for-the-badge&logo=flutter&logoColor=white" />
-<img src="https://img.shields.io/badge/Dart-3.3-0175C2?style=for-the-badge&logo=dart&logoColor=white" />
-<img src="https://img.shields.io/badge/Riverpod-2.5-00B4D8?style=for-the-badge" />
-<img src="https://img.shields.io/badge/SQLite-local--db-003B57?style=for-the-badge&logo=sqlite&logoColor=white" />
-<img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" />
+<p align="center">
+  <img src="https://img.shields.io/badge/Flutter-3.x-02569B?style=flat-square&logo=flutter&logoColor=white" />
+  <img src="https://img.shields.io/badge/Dart-3.3-0175C2?style=flat-square&logo=dart&logoColor=white" />
+  <img src="https://img.shields.io/badge/Riverpod-2.5-00B4D8?style=flat-square" />
+  <img src="https://img.shields.io/badge/SQLite-Local--DB-003B57?style=flat-square&logo=sqlite&logoColor=white" />
+  <img src="https://img.shields.io/badge/License-MIT-28C76F?style=flat-square" />
+</p>
 
-# 💸 FinTrack
+> Kelola pemasukan, pengeluaran, budget, tabungan, dan hutang — semuanya dalam satu aplikasi Flutter **offline-first** yang elegan.
 
-**Aplikasi Pencatatan Keuangan Mahasiswa yang Cerdas**
+---
 
-Kelola pemasukan, pengeluaran, budget, tabungan, dan hutang — semuanya dalam satu aplikasi Flutter offline-first yang elegan.
+## 📋 Daftar Isi
 
-[Fitur](#-fitur) • [Tangkapan Layar](#-tangkapan-layar) • [Instalasi](#-instalasi) • [Arsitektur](#-arsitektur) • [Kontribusi](#-kontribusi)
-
-</div>
+- [Fitur](#-fitur)
+- [Tangkapan Layar](#-tangkapan-layar)
+- [Instalasi](#-instalasi)
+- [Struktur Proyek](#-struktur-proyek)
+- [Arsitektur](#-arsitektur)
+- [Dependensi](#-dependensi-utama)
+- [Database](#-skema-database)
+- [Roadmap](#-roadmap)
+- [Kontribusi](#-kontribusi)
+- [Lisensi](#-lisensi)
 
 ---
 
@@ -48,8 +57,8 @@ Kelola pemasukan, pengeluaran, budget, tabungan, dan hutang — semuanya dalam s
 - Laporan harian, mingguan, bulanan, tahunan
 - Pie chart pengeluaran per kategori
 - Bar chart tren bulanan income vs expense
-- **Export ke PDF** (laporan lengkap)
-- **Export ke CSV** (data transaksi)
+- Export ke **PDF** (laporan lengkap)
+- Export ke **CSV** (data transaksi)
 
 ### ⚙️ Pengaturan & Profil
 - Mode gelap / terang
@@ -61,11 +70,11 @@ Kelola pemasukan, pengeluaran, budget, tabungan, dan hutang — semuanya dalam s
 
 ## 📱 Tangkapan Layar
 
-> *(Tambahkan screenshot aplikasi di folder `screenshots/` dan update tabel ini)*
+> Tambahkan screenshot di folder `screenshots/` lalu update tabel ini.
 
 | Dashboard | Transaksi | Budget | Tabungan |
 |-----------|-----------|--------|----------|
-| ![Dashboard](screenshots/dashboard.png) | ![Transaksi](screenshots/transaction.png) | ![Budget](screenshots/budget.png) | ![Hutang-Piutang](screenshots/hutang.png) |
+| ![Dashboard](screenshots/dashboard.png) | ![Transaksi](screenshots/transaction.png) | ![Budget](screenshots/budget.png) | ![Tabungan](screenshots/savings.png) |
 
 ---
 
@@ -90,7 +99,7 @@ cd fintrack
 # 2. Install dependencies
 flutter pub get
 
-# 3. Buat folder assets (jika belum ada)
+# 3. Buat folder assets
 mkdir -p assets/images assets/icons
 
 # 4. Jalankan aplikasi
@@ -103,7 +112,7 @@ flutter run
 # Android APK
 flutter build apk --release
 
-# Android App Bundle (untuk Play Store)
+# Android App Bundle (Play Store)
 flutter build appbundle --release
 
 # iOS
@@ -118,24 +127,24 @@ flutter build ios --release
 lib/
 ├── core/
 │   ├── constants/
-│   │   ├── app_colors.dart        # Palet warna & gradien
-│   │   └── app_constants.dart     # Konstanta global (DB, kategori, dll)
+│   │   ├── app_colors.dart         # Palet warna & gradien
+│   │   └── app_constants.dart      # Konstanta global (DB, kategori, dll)
 │   ├── services/
-│   │   ├── auth_service.dart      # Login, register, session
+│   │   ├── auth_service.dart
 │   │   ├── notification_service.dart
 │   │   ├── pdf_export_service.dart
 │   │   └── csv_export_service.dart
 │   ├── theme/
-│   │   └── app_theme.dart         # Light & dark theme (Material 3)
+│   │   └── app_theme.dart          # Light & dark theme (Material 3)
 │   ├── utils/
 │   │   ├── currency_formatter.dart
 │   │   └── validators.dart
 │   └── widgets/
-│       └── common_widgets.dart    # Shared widgets (GradientCard, EmptyState, dll)
+│       └── common_widgets.dart     # GradientCard, EmptyState, dll
 │
 ├── data/
 │   ├── database/
-│   │   └── database_helper.dart   # SQLite singleton & schema
+│   │   └── database_helper.dart    # SQLite singleton & schema
 │   ├── models/
 │   │   ├── user_model.dart
 │   │   ├── transaction_model.dart
@@ -151,66 +160,38 @@ lib/
 │       └── savings_repository.dart
 │
 ├── features/
-│   ├── auth/
-│   │   ├── pages/           login_page, register_page
-│   │   └── providers/       auth_provider
-│   ├── dashboard/
-│   │   ├── pages/           dashboard_page, main_shell
-│   │   └── providers/       dashboard_provider
-│   ├── transaction/
-│   │   ├── pages/           transaction_page, add_transaction_page, detail_page
-│   │   └── providers/       transaction_provider
-│   ├── budget/
-│   │   ├── pages/           budget_page, add_budget_page
-│   │   └── providers/       budget_provider
-│   ├── debt/
-│   │   ├── pages/           debt_page, add_debt_page
-│   │   └── providers/       debt_provider
-│   ├── savings/
-│   │   ├── pages/           savings_page, add_savings_page, savings_detail_page
-│   │   └── providers/       savings_provider
-│   ├── reports/
-│   │   ├── pages/           reports_page
-│   │   ├── providers/       report_provider
-│   │   └── widgets/         export_button
-│   └── settings/
-│       ├── pages/           settings_page, profile_page
-│       └── providers/       settings_provider
+│   ├── auth/          # Login, Register
+│   ├── dashboard/     # Dashboard, MainShell
+│   ├── transaction/   # Transaksi, Add, Detail
+│   ├── budget/        # Budget, Add Budget
+│   ├── debt/          # Hutang & Piutang
+│   ├── savings/       # Tabungan, Detail
+│   ├── reports/       # Laporan & Export
+│   └── settings/      # Pengaturan, Profil
 │
 └── routes/
-    └── app_router.dart            # Centralized named routing
+    └── app_router.dart             # Named routing terpusat
 ```
 
 ---
 
 ## 🏛️ Arsitektur
 
-FinTrack menggunakan arsitektur **Feature-First** dengan pola **Repository Pattern**.
+FinTrack menggunakan arsitektur **Feature-First** dengan **Repository Pattern**.
 
 ```
-UI (Pages / Widgets)
+UI Layer (Pages / Widgets)
         ↓
-   Providers (Riverpod StateNotifier)
+State Layer (Riverpod StateNotifier)
         ↓
-   Repositories
+Repository Layer
         ↓
-   DatabaseHelper (SQLite via sqflite)
+Database Layer (SQLite via sqflite)
 ```
 
-### State Management
-- **flutter_riverpod** `StateNotifierProvider` untuk state yang mutable
-- **Provider** untuk dependency injection (repository, service)
-- **FutureProvider.family** untuk data async dengan parameter
+**State Management:** `flutter_riverpod` — `StateNotifierProvider` untuk state mutable, `Provider` untuk DI, `FutureProvider.family` untuk query async berparameter.
 
-### Database
-- **SQLite** via `sqflite` — fully offline, tidak perlu internet
-- Schema versi 1 dengan 6 tabel: `users`, `transactions`, `budgets`, `debts`, `savings`, `accounts`
-- Indexed pada kolom yang sering diquery (`user_id`, `date`)
-
-### Keamanan
-- Password di-hash dengan **SHA-256** sebelum disimpan
-- Session ID disimpan di `SharedPreferences`
-- `flutter_secure_storage` tersedia untuk data sensitif
+**Keamanan:** Password di-hash dengan **SHA-256** sebelum disimpan ke database.
 
 ---
 
@@ -236,23 +217,12 @@ UI (Pages / Widgets)
 ## 🗃️ Skema Database
 
 ```sql
--- Pengguna
-users (id, name, email, password[SHA256], avatar, monthly_allowance, created_at, updated_at)
-
--- Transaksi
-transactions (id, user_id, account_id, type[income|expense], amount, category, note, image_path, date, ...)
-
--- Budget
-budgets (id, user_id, name, category, target, used, period[daily|weekly|monthly], start_date, end_date, ...)
-
--- Hutang & Piutang
-debts (id, user_id, type[owed|receivable], person_name, amount, paid_amount, status[unpaid|paid], due_date, ...)
-
--- Tabungan
-savings (id, user_id, goal_name, target_amount, current_amount, deadline, icon, is_completed, ...)
-
--- Akun (rekening/dompet)
-accounts (id, user_id, name, type[Tunai|E-Wallet|Bank], balance, is_default, ...)
+users        (id, name, email, password, avatar, monthly_allowance, ...)
+transactions (id, user_id, type, amount, category, note, image_path, date, ...)
+budgets      (id, user_id, name, category, target, used, period, start_date, end_date, ...)
+debts        (id, user_id, type, person_name, amount, paid_amount, status, due_date, ...)
+savings      (id, user_id, goal_name, target_amount, current_amount, deadline, icon, ...)
+accounts     (id, user_id, name, type, balance, is_default, ...)
 ```
 
 ---
@@ -261,24 +231,13 @@ accounts (id, user_id, name, type[Tunai|E-Wallet|Bank], balance, is_default, ...
 
 | Token | Nilai |
 |-------|-------|
-| **Primary** | `#FF4D94` (Pink) |
-| **Success** | `#28C76F` (Green) |
-| **Danger** | `#EA5455` (Red) |
-| **Warning** | `#FF9F43` (Orange) |
-| **Info** | `#00CFE8` (Cyan) |
-| **Font** | Poppins (via Google Fonts) |
-| **Border Radius** | 14–24dp (konsisten) |
-| **Theme** | Material 3, Light & Dark |
-
----
-
-## 🔔 Notifikasi Lokal
-
-| Trigger | Pesan |
-|---------|-------|
-| Budget < 20% tersisa | "⚠️ Budget hampir habis" |
-| Hutang jatuh tempo besok | "💸 Jatuh tempo hutang" |
-| Milestone tabungan (25/50/75/100%) | "🎉 Milestone tercapai!" |
+| Primary | `#FF4D94` (Pink) |
+| Success | `#28C76F` (Green) |
+| Danger | `#EA5455` (Red) |
+| Warning | `#FF9F43` (Orange) |
+| Info | `#00CFE8` (Cyan) |
+| Font | Poppins (Google Fonts) |
+| Theme | Material 3, Light & Dark |
 
 ---
 
@@ -287,35 +246,27 @@ accounts (id, user_id, name, type[Tunai|E-Wallet|Bank], balance, is_default, ...
 - [ ] Sinkronisasi cloud (Firebase / Supabase)
 - [ ] Multi-akun (Tunai, BCA, GoPay, dll)
 - [ ] Widget home screen Android
-- [ ] Recurring transaction (otomatis harian/bulanan)
+- [ ] Recurring transaction otomatis
 - [ ] Biometric lock (fingerprint / Face ID)
 - [ ] Import transaksi dari CSV/Excel
-- [ ] Analisis AI pengeluaran
+- [ ] Analisis pengeluaran berbasis AI
 
 ---
 
 ## 🤝 Kontribusi
 
-Kontribusi sangat disambut! Silakan ikuti langkah berikut:
+Kontribusi sangat disambut! Silakan baca [CONTRIBUTING.md](CONTRIBUTING.md) untuk panduan lengkap.
 
-1. **Fork** repository ini
-2. Buat branch fitur: `git checkout -b feat/nama-fitur`
-3. Commit perubahan: `git commit -m "feat: deskripsi singkat"`
-4. Push ke branch: `git push origin feat/nama-fitur`
-5. Buat **Pull Request**
+```bash
+# 1. Fork repository
+# 2. Buat branch fitur
+git checkout -b feat/nama-fitur
 
-### Konvensi Commit
+# 3. Commit dengan konvensi
+git commit -m "feat: deskripsi singkat"
 
-Gunakan format [Conventional Commits](https://www.conventionalcommits.org/):
-
-```
-feat: tambah fitur baru
-fix: perbaikan bug
-docs: update dokumentasi
-style: perubahan formatting
-refactor: refactor kode tanpa perubahan fitur
-test: tambah/update test
-chore: update dependency/config
+# 4. Push & buat Pull Request
+git push origin feat/nama-fitur
 ```
 
 ---
@@ -326,12 +277,4 @@ Proyek ini dilisensikan di bawah **MIT License** — lihat file [LICENSE](LICENS
 
 ---
 
-<div align="center">
-
-Dibuat dengan ❤️ untuk mahasiswa Indonesia
-
-**⭐ Jika project ini bermanfaat, beri bintang ya!**
-
-</div>
-#   F I N T R A C K - - - f i n a n c e - a p p  
- 
+<p align="center">Dibuat dengan ❤️ untuk mahasiswa Indonesia &nbsp;•&nbsp; ⭐ Star jika bermanfaat!</p>
