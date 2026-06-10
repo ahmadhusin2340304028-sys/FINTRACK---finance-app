@@ -74,7 +74,7 @@
 
 | Dashboard | Transaksi | Budget | Tabungan |
 |-----------|-----------|--------|----------|
-| ![Dashboard](screenshots/dashboard.png) | ![Transaksi](screenshots/transaction.png) | ![Budget](screenshots/budget.png) | ![Tabungan](screenshots/savings.png) |
+| ![Dashboard](screenshots/dashboard.png) | ![Transaksi](screenshots/transaction.png) | ![Budget](screenshots/budget.png) | ![Tabungan](screenshots/hutang.png) |
 
 ---
 
